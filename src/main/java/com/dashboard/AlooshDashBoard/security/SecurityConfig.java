@@ -34,8 +34,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(HttpMethod.POST,"/api/auth/user/login").permitAll()
-                                .requestMatchers("/api/**").hasAuthority("ADMIN")
-                                .requestMatchers("/error").permitAll()
                                 .anyRequest().authenticated()
                         );
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
