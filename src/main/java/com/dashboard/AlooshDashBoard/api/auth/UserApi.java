@@ -27,6 +27,8 @@ public class UserApi {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto, HttpSession session){
+                System.out.println("Login request received with username: " + loginDto.getUsername());
+
         Authentication existingAuth= SecurityContextHolder.getContext().getAuthentication();
         if(existingAuth!=null&&existingAuth.isAuthenticated()&&!(existingAuth instanceof AnonymousAuthenticationToken)){
             return new ResponseEntity<>("User is already logged in!", HttpStatus.CONFLICT);
